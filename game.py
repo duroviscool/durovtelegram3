@@ -2,8 +2,13 @@ import pygame as py
 py.init()
 font_name = py.font.match_font('Arial') #поиск шрифта
 size = 18 #его размер
+
 w,h = 600,600
 win = py.display.set_mode((w,h))
+
+image = py.image.load('pngwing.png') #загрузка (добавление) картинки
+image = py.transform.scale(image, (w,h)) #изменение картинки на полный экран
+
 name = ''
 def draw_text(surf, text, x, y, size=size, color=(255,255,255)):
   font = py.font.Font(font_name, size) #определение шрифта
@@ -31,7 +36,8 @@ while 1:
       else:
         name += event.unicode
   win.fill((0,0,0))
-  draw_text(win, 'Введите имя: ', (w//2),(h//2))
+  win.blit(image, (0, 0)) #добавление картинки в игру
+  draw_text(win, 'Введите имя:', (w//2),(h//2))
   draw_text(win, name, 300,325)
   py.display.update()
   py.time.delay(10)
