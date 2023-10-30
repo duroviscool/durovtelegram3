@@ -7,7 +7,7 @@ w = 1200
 h = 800
 win = py.display.set_mode((w,h))
 
-bg = py.image.load('pngwing.png') #загрузка (добавление) картинки
+bg = py.image.load('replace.png') #загрузка (добавление) картинки
 bg = py.transform.scale(bg, (w,h)) #изменение картинки на полный экран
 
 stbg = py.image.load('darkbg.jpg')
@@ -34,7 +34,7 @@ class Player(): #все, что связано с игроком
       self.plr_turn = True
     elif self.plr_x <= 40:
       self.plr_turn = False
-          
+
 #вступительный экран
 name = ''
 def draw_text(surf, text, x, y, size=size, color=(255,255,255)):
