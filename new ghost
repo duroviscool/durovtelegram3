@@ -1,0 +1,37 @@
+# заменить enemy
+class Enemy(pg.sprite.Sprite): # создание врага
+  def __init__(self):
+    pg.sprite.Sprite.__init__(self)
+    self.image = pg.image.load("ghost.png")
+    self.image = pg.transform.scale(self.image, (64,64))
+    self.speed_x = 1
+    self.speed_y = 1
+    self.plr_turn = False
+    self.rect = self.image.get_rect()
+    self.rect.x = random.randrange(60,1140) # ИЗНАЧАЛЬНАЯ позиция
+    self.rect.y = random.randrange(60,740)
+  def update(self):
+    self.rect.x += self.speed_x
+    self.rect.y += self.speed_y
+    if self.plr_turn == True:
+      self.speed_x = -1
+    else:
+      self.speed_x = 1
+    if self.rect.x >= 1160:
+      self.plr_turn = True
+    elif self.rect.x <= 40:
+      self.plr_turn = False
+    if self.rect.y >= 740: #потом убрать
+      self.speed_y = -1
+    elif self.rect.y <= 40:
+      self.speed_y = 1 #
+
+#в кноце добавить, экран проигрыша
+while True:
+  for event in pg.event.get():
+    if event.type == pg.QUIT:
+      exit()
+
+  win.fill((0,0,0))
+  pg.display.update()
+  fps.tick(5)
